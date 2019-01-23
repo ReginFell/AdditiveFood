@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:additive_food/features/home/screens/home.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,9 +15,23 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
+  static const int SPLASH_DURATION = 2;
+
+  SplashScreenState() : super();
+
   @override
   void initState() {
     super.initState();
+    startTime();
+  }
+
+  startTime() async {
+    var duration = new Duration(seconds: SPLASH_DURATION);
+    return new Timer(duration, navigationPage);
+  }
+
+  void navigationPage() {
+      Navigator.of(context).pushReplacementNamed(HomeScreen.route);
   }
 
   @override
