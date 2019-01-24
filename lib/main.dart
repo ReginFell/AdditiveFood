@@ -2,10 +2,14 @@ import 'package:additive_food/features/home/screens/home.dart';
 import 'package:additive_food/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:redux/redux.dart';
+import 'package:additive_food/app_state.dart';
+import 'package:additive_food/features/splash/splash_reducer.dart';
+import 'package:redux_thunk/redux_thunk.dart';
 
 void main() {
-  final store = new Store(null);
+  final store = createStore();
 
   runApp(AdditiveFoodApplication(store: store));
 }
@@ -23,11 +27,12 @@ class AdditiveFoodAppState extends State<AdditiveFoodApplication> {
   
   @override
   Widget build(BuildContext context) {
-    return StoreProvider(
+    return StoreProvider<AppState>(
       store: widget.store,
       child: MaterialApp(
         title: 'Additive Food',
         theme: createTheme(),
+        navigatorKey: NavigatorHolder.navigatorKey,
         routes: createRoutes(),
       ),
     );
@@ -54,3 +59,9 @@ Map<String, WidgetBuilder> createRoutes() {
   };
 }
 
+Store<AppState> createStore() {
+  Store<AppState> store = new Store(splashReducer,
+      initialState: new AppState(),
+      middleware: [thunkMiddleware, NavigationMiddleware<AppState>()]);
+  return store;
+}
