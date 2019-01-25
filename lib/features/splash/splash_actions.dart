@@ -8,11 +8,7 @@ import 'package:redux_thunk/redux_thunk.dart';
 
 const int SPLASH_DURATION = 2;
 
-ThunkAction<AppState> startSplashCountdown = (Store<AppState> store) async {
-  var duration = Duration(seconds: SPLASH_DURATION);
-  return Timer(duration, openHome);
+ThunkAction<AppState> splashCountdownAction = (Store<AppState> store) async {
+  Timer(Duration(seconds: SPLASH_DURATION),
+      () => store.dispatch(NavigateToAction.replace(HomeScreen.route)));
 };
-
-void openHome() {
-  NavigateToAction.replace(HomeScreen.route);
-}
