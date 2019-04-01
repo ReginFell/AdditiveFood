@@ -1,12 +1,13 @@
-import 'package:additive_food/features/home/screens/home.dart';
+import 'package:additive_food/features/home/home_screen.dart';
 import 'package:additive_food/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:redux/redux.dart';
-import 'package:additive_food/app_state.dart';
-import 'package:additive_food/features/splash/splash_reducer.dart';
+import 'features/app/app_reducer.dart';
+import 'package:additive_food/features/app/app_state.dart';
 import 'package:redux_thunk/redux_thunk.dart';
+import 'package:redux_logging/redux_logging.dart';
 
 void main() {
   final store = createStore();
@@ -24,7 +25,6 @@ class AdditiveFoodApplication extends StatefulWidget {
 }
 
 class AdditiveFoodAppState extends State<AdditiveFoodApplication> {
-  
   @override
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
@@ -60,8 +60,12 @@ Map<String, WidgetBuilder> createRoutes() {
 }
 
 Store<AppState> createStore() {
-  Store<AppState> store = new Store(splashReducer,
-      initialState: new AppState(),
-      middleware: [thunkMiddleware, NavigationMiddleware<AppState>()]);
+  Store<AppState> store = Store(appReducer,
+      initialState: AppState(),
+      middleware: [
+        thunkMiddleware,
+        NavigationMiddleware<AppState>(),
+        LoggingMiddleware.printer()
+      ]);
   return store;
 }
