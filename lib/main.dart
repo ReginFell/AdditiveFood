@@ -1,3 +1,5 @@
+import 'package:additive_food/data/adittive/additive_repository.dart';
+import 'package:additive_food/data/api.dart';
 import 'package:additive_food/features/home/home_screen.dart';
 import 'package:additive_food/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +10,17 @@ import 'features/app/app_reducer.dart';
 import 'package:additive_food/features/app/app_state.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:redux_logging/redux_logging.dart';
+import 'package:http/http.dart' as http;
+import 'package:get_it/get_it.dart';
+import 'config.dart';
+
+GetIt getIt = new GetIt();
 
 void main() {
+  getIt.registerSingleton(_createHttpClient());
+  getIt.registerSingleton(_createApi(API_URL, LANGUAGE, getIt<http.Client>()));
+  getIt.registerSingleton(_createAdditiveRepository(getIt<Api>()));
+
   final store = createStore();
 
   runApp(AdditiveFoodApplication(store: store));
@@ -68,4 +79,16 @@ Store<AppState> createStore() {
         LoggingMiddleware.printer()
       ]);
   return store;
+}
+
+http.Client _createHttpClient() {
+  return http.Client();
+}
+
+Api _createApi(String baseUrl, String language, http.Client client) {
+  return Api(baseUrl, language, client);
+}
+
+AdditiveRepository _createAdditiveRepository(Api api) {
+  return AdditiveRepository(api);
 }

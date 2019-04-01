@@ -24,7 +24,7 @@ class SplashScreenState extends State<SplashScreen> {
         builder: (context, state) {
           return Image(
             image: AssetImage("assets/images/background.png"),
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           );
         });
   }

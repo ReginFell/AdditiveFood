@@ -20,6 +20,7 @@ dependencies:
   flutter_svg:
   rxdart:
   http:
+  get_it:
 
 dev_dependencies:
   flutter_test:
