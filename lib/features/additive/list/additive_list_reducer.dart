@@ -1,5 +1,5 @@
-import 'package:additive_food/features/additive/additive_list_actions.dart';
-import 'package:additive_food/features/additive/additive_list_state.dart';
+import 'action/additive_list_actions.dart';
+import 'state/additive_list_state.dart';
 import 'package:redux/redux.dart';
 
 Reducer<AdditiveListState> additiveListReducer = combineReducers([

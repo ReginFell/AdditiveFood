@@ -3,8 +3,8 @@ import 'package:built_value/built_value.dart';
 
 part 'additive_list_state.g.dart';
 
-abstract class AdditiveListState implements Built<AdditiveListState, AdditiveListStateBuilder> {
-
+abstract class AdditiveListState
+    implements Built<AdditiveListState, AdditiveListStateBuilder> {
   bool get isLoading;
 
   @nullable
@@ -14,10 +14,7 @@ abstract class AdditiveListState implements Built<AdditiveListState, AdditiveLis
 
   factory AdditiveListState() {
     return _$AdditiveListState._(
-        isLoading: false,
-        error: null,
-        additives: List()
-    );
+        isLoading: false, error: null, additives: List());
   }
 
   AdditiveListState._();

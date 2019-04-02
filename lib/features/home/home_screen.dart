@@ -1,4 +1,4 @@
-import 'package:additive_food/features/additive/additive_list_screen.dart';
+import '../additive/list/screen/additive_list_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

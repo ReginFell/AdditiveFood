@@ -1,5 +1,5 @@
-import 'package:additive_food/features/additive/additive_list_actions.dart';
-import 'package:additive_food/features/additive/additive_list_state.dart';
+import 'package:additive_food/features/additive/list/action/additive_list_actions.dart';
+import '../state/additive_list_state.dart';
 import 'package:additive_food/features/app/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
