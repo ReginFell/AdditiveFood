@@ -16,13 +16,21 @@ class AdditiveListWidgetState extends State<AdditiveListScreen> {
   @override
   Widget build(BuildContext context) {
     return StoreBuilder(
-        onInit: (Store<AppState> store) => store.dispatch(loadPosts),
+        onInit: (Store<AppState> store) => store.dispatch(loadAdditivesAction),
         builder: (BuildContext context, Store<AppState> store) {
           return StoreConnector<AppState, AdditiveListState>(
               converter: (store) => store.state.additiveListState,
               builder: (context, state) {
                 if (state.isLoading) {
                   return Center(child: CircularProgressIndicator());
+                }
+                if (state.error != null) {
+                  return RaisedButton(
+                    child: Text(state.error.toString()),
+                    onPressed: () {
+                      store.dispatch(loadAdditivesAction);
+                    },
+                  );
                 } else {
                   return ListView.builder(
                       itemCount: state.additives.length,

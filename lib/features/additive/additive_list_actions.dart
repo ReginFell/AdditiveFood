@@ -8,14 +8,23 @@ import 'package:redux_thunk/redux_thunk.dart';
 class LoadingAction {}
 
 class AdditivesLoadedAction {
-  List<Additive> additives;
+  final List<Additive> additives;
 
   AdditivesLoadedAction(this.additives);
 }
 
-ThunkAction<AppState> loadPosts = (Store<AppState> store) async {
+class AdditiveLoadingError {
+  final Exception error;
+
+  AdditiveLoadingError(this.error);
+}
+
+ThunkAction<AppState> loadAdditivesAction = (Store<AppState> store) async {
   store.dispatch(LoadingAction());
   AdditiveRepository repository = getIt<AdditiveRepository>();
 
-  store.dispatch(AdditivesLoadedAction(await repository.fetchAdditives()));
+  repository
+      .fetchAdditives()
+      .then((value) => store.dispatch(AdditivesLoadedAction(value)))
+      .catchError((error) => store.dispatch(AdditiveLoadingError(error)));
 };

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:additive_food/data/adittive/model/additive.dart';
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 
 class Api {

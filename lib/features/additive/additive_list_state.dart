@@ -7,11 +7,15 @@ abstract class AdditiveListState implements Built<AdditiveListState, AdditiveLis
 
   bool get isLoading;
 
+  @nullable
+  Exception get error;
+
   List<Additive> get additives;
 
   factory AdditiveListState() {
     return _$AdditiveListState._(
         isLoading: false,
+        error: null,
         additives: List()
     );
   }

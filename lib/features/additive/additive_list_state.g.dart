@@ -10,12 +10,15 @@ class _$AdditiveListState extends AdditiveListState {
   @override
   final bool isLoading;
   @override
+  final Exception error;
+  @override
   final List<Additive> additives;
 
   factory _$AdditiveListState([void updates(AdditiveListStateBuilder b)]) =>
       (new AdditiveListStateBuilder()..update(updates)).build();
 
-  _$AdditiveListState._({this.isLoading, this.additives}) : super._() {
+  _$AdditiveListState._({this.isLoading, this.error, this.additives})
+      : super._() {
     if (isLoading == null) {
       throw new BuiltValueNullFieldError('AdditiveListState', 'isLoading');
     }
@@ -37,18 +40,21 @@ class _$AdditiveListState extends AdditiveListState {
     if (identical(other, this)) return true;
     return other is AdditiveListState &&
         isLoading == other.isLoading &&
+        error == other.error &&
         additives == other.additives;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, isLoading.hashCode), additives.hashCode));
+    return $jf($jc(
+        $jc($jc(0, isLoading.hashCode), error.hashCode), additives.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('AdditiveListState')
           ..add('isLoading', isLoading)
+          ..add('error', error)
           ..add('additives', additives))
         .toString();
   }
@@ -62,6 +68,10 @@ class AdditiveListStateBuilder
   bool get isLoading => _$this._isLoading;
   set isLoading(bool isLoading) => _$this._isLoading = isLoading;
 
+  Exception _error;
+  Exception get error => _$this._error;
+  set error(Exception error) => _$this._error = error;
+
   List<Additive> _additives;
   List<Additive> get additives => _$this._additives;
   set additives(List<Additive> additives) => _$this._additives = additives;
@@ -71,6 +81,7 @@ class AdditiveListStateBuilder
   AdditiveListStateBuilder get _$this {
     if (_$v != null) {
       _isLoading = _$v.isLoading;
+      _error = _$v.error;
       _additives = _$v.additives;
       _$v = null;
     }
@@ -93,7 +104,8 @@ class AdditiveListStateBuilder
   @override
   _$AdditiveListState build() {
     final _$result = _$v ??
-        new _$AdditiveListState._(isLoading: isLoading, additives: additives);
+        new _$AdditiveListState._(
+            isLoading: isLoading, error: error, additives: additives);
     replace(_$result);
     return _$result;
   }
