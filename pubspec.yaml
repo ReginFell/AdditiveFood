@@ -21,6 +21,7 @@ dependencies:
   rxdart:
   http:
   get_it:
+  bubble_bottom_bar:
 
 dev_dependencies:
   flutter_test:

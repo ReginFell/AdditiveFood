@@ -6,6 +6,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class AdditiveListScreen extends StatefulWidget {
+  static final String route = '/additive_list';
+
   @override
   AdditiveListWidgetState createState() {
     return new AdditiveListWidgetState();
@@ -48,4 +50,5 @@ class AdditiveListWidgetState extends State<AdditiveListScreen> {
               });
         });
   }
+
 }

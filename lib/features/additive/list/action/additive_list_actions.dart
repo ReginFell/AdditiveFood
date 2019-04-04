@@ -20,11 +20,14 @@ class AdditiveLoadingError {
 }
 
 ThunkAction<AppState> loadAdditivesAction = (Store<AppState> store) async {
-  store.dispatch(LoadingAction());
-  AdditiveRepository repository = getIt<AdditiveRepository>();
+  if (store.state.additiveListState.additives.isEmpty) {
 
-  repository
-      .fetchAdditives()
-      .then((value) => store.dispatch(AdditivesLoadedAction(value)))
-      .catchError((error) => store.dispatch(AdditiveLoadingError(error)));
+    store.dispatch(LoadingAction());
+    AdditiveRepository repository = getIt<AdditiveRepository>();
+
+    repository
+        .fetchAdditives()
+        .then((value) => store.dispatch(AdditivesLoadedAction(value)))
+        .catchError((error) => store.dispatch(AdditiveLoadingError(error)));
+  }
 };
