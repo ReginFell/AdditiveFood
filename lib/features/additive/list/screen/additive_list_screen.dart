@@ -1,3 +1,4 @@
+import 'package:additive_food/data/adittive/model/additive.dart';
 import 'package:additive_food/features/additive/list/action/additive_list_actions.dart';
 import '../state/additive_list_state.dart';
 import 'package:additive_food/features/app/app_state.dart';
@@ -37,18 +38,19 @@ class AdditiveListWidgetState extends State<AdditiveListScreen> {
                   return ListView.builder(
                       itemCount: state.additives.length,
                       itemBuilder: (BuildContext ctxt, int index) {
-                        return Container(
-                            margin: const EdgeInsets.all(16.0),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(state.additives[index].id),
-                                  Text(state.additives[index].name),
-                                ]));
+                        return buildListItem(state.additives, index);
                       });
                 }
               });
         });
   }
 
+  Widget buildListItem(List<Additive> additives, int index) {
+    return Container(
+        margin: const EdgeInsets.all(16.0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(additives[index].id),
+          Text(additives[index].name),
+        ]));
+  }
 }

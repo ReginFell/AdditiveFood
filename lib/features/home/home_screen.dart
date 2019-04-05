@@ -42,6 +42,7 @@ class HomeScreenState extends State<HomeScreen> {
   Widget buildAppBar(BuildContext context) {
     return AppBar(
       title: Text('Additive Food'),
+      elevation: 0.0,
     );
   }
 
