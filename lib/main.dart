@@ -5,6 +5,7 @@ import 'package:additive_food/features/splash/splash_screen.dart';
 import 'package:additive_food/injection.dart';
 import 'package:additive_food/injection/additive_module.dart';
 import 'package:additive_food/injection/app_module.dart';
+import 'package:additive_food/injection/module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
@@ -17,12 +18,10 @@ import 'features/app/app_reducer.dart';
 Injection injection;
 
 void main() {
-  final appModule = AppModule(API_URL, LANGUAGE);
+  final appModule = AppModule(apiUrl, language);
   final additiveModule = AdditiveModule();
 
-  final modules = List();
-  modules.add(appModule);
-  modules.add(additiveModule);
+  final List<Module> modules = [appModule, additiveModule];
 
   injection = Injection(List.unmodifiable(modules));
 
