@@ -15,12 +15,10 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   final List<Page> _pages = [
-    Page(0, "/2", GlobalKey<NavigatorState>(), (context) => Text("Hello")),
-    Page(1, AdditiveListScreen.route, GlobalKey<NavigatorState>(),
-        (context) => AdditiveListScreen()),
-    Page(2, "/123", GlobalKey<NavigatorState>(), (context) => Text("21")),
-    Page(3, AdditiveListScreen.route, GlobalKey<NavigatorState>(),
-            (context) => AdditiveListScreen()),
+    Page(0, "/2", GlobalKey<NavigatorState>(), (_) => Text("Hello")),
+    Page(1, AdditiveListScreen.route, GlobalKey<NavigatorState>(), (_) => AdditiveListScreen()),
+    Page(2, "/123", GlobalKey<NavigatorState>(), (_) => Text("21")),
+    Page(3, AdditiveListScreen.route, GlobalKey<NavigatorState>(), (_) => AdditiveListScreen()),
   ];
 
   int _currentPage = 1;

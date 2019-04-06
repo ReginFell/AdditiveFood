@@ -1,17 +1,30 @@
+import 'package:additive_food/config.dart';
+import 'package:additive_food/features/app/app_state.dart';
 import 'package:additive_food/features/home/home_screen.dart';
 import 'package:additive_food/features/splash/splash_screen.dart';
 import 'package:additive_food/injection.dart';
+import 'package:additive_food/injection/additive_module.dart';
+import 'package:additive_food/injection/app_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:redux/redux.dart';
-import 'features/app/app_reducer.dart';
-import 'package:additive_food/features/app/app_state.dart';
-import 'package:redux_thunk/redux_thunk.dart';
 import 'package:redux_logging/redux_logging.dart';
+import 'package:redux_thunk/redux_thunk.dart';
+
+import 'features/app/app_reducer.dart';
+
+Injection injection;
 
 void main() {
-  injection.createGraph();
+  final appModule = AppModule(API_URL, LANGUAGE);
+  final additiveModule = AdditiveModule();
+
+  final modules = List();
+  modules.add(appModule);
+  modules.add(additiveModule);
+
+  injection = Injection(List.unmodifiable(modules));
 
   final store = createStore();
 
