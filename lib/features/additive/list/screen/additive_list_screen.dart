@@ -1,10 +1,12 @@
 import 'package:additive_food/data/adittive/model/additive.dart';
+import 'package:additive_food/features/additive/details/screen/additive_details_screen.dart';
 import 'package:additive_food/features/additive/list/action/additive_list_actions.dart';
-import '../state/additive_list_state.dart';
 import 'package:additive_food/features/app/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+
+import '../state/additive_list_state.dart';
 
 class AdditiveListScreen extends StatefulWidget {
   static final String route = '/additive_list';
@@ -46,11 +48,22 @@ class AdditiveListWidgetState extends State<AdditiveListScreen> {
   }
 
   Widget buildListItem(List<Additive> additives, int index) {
-    return Container(
-        margin: const EdgeInsets.all(16.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(additives[index].id),
-          Text(additives[index].name),
-        ]));
+    return InkWell(
+        child: Container(
+            margin: const EdgeInsets.all(16.0),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(additives[index].id),
+              Text(additives[index].name),
+            ])),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  AdditiveDetailsScreen(additive: additives[index]),
+            ),
+          );
+        });
   }
 }

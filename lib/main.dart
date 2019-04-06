@@ -5,7 +5,7 @@ import 'package:additive_food/features/splash/splash_screen.dart';
 import 'package:additive_food/injection.dart';
 import 'package:additive_food/injection/additive_module.dart';
 import 'package:additive_food/injection/app_module.dart';
-import 'package:additive_food/injection/module.dart';
+import 'package:additive_food/injection/getit_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
@@ -21,9 +21,9 @@ void main() {
   final appModule = AppModule(apiUrl, language);
   final additiveModule = AdditiveModule();
 
-  final List<Module> modules = [appModule, additiveModule];
+  final List<GetItModule> modules = [appModule, additiveModule];
 
-  injection = Injection(List.unmodifiable(modules));
+  injection = Injection(modules);
 
   final store = createStore();
 
