@@ -10,13 +10,17 @@ class AdditiveDetailsScreen extends StatefulWidget {
 
   @override
   AdditiveDetailsWidgetState createState() {
-    return new AdditiveDetailsWidgetState();
+    return new AdditiveDetailsWidgetState(additive);
   }
 }
 
 class AdditiveDetailsWidgetState extends State<AdditiveDetailsScreen> {
+  final Additive additive;
+
+  AdditiveDetailsWidgetState(this.additive);
+
   @override
   Widget build(BuildContext context) {
-    return Text("212");
+    return Text(additive.name);
   }
 }
