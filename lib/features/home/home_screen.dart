@@ -33,26 +33,25 @@ class HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  //TODO at the moment this always requires to press backspace twice
   Future<bool> _willPopCallback() async {
-    final currentNavigator = _pages[_currentPage].navigator;
+    final navigationState = _pages[_currentPage].navigator.currentState;
 
-    if (currentNavigator.currentState.canPop()) {
-      currentNavigator.currentState.pop();
-      return false;
-    } else {
-      return true;
+    final bool hasPages = navigationState.canPop();
+    if (hasPages) {
+      navigationState.pop();
     }
+
+    return !await navigationState.maybePop();
   }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+        onWillPop: _willPopCallback,
         child: Scaffold(
             appBar: buildAppBar(context),
             body: buildBody(context),
-            bottomNavigationBar: buildBottomNavigation(context)),
-        onWillPop: _willPopCallback);
+            bottomNavigationBar: buildBottomNavigation(context)));
   }
 
   Widget buildAppBar(BuildContext context) {

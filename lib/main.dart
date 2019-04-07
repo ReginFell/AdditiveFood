@@ -46,7 +46,8 @@ class AdditiveFoodAppState extends State<AdditiveFoodApplication> {
       store: widget.store,
       child: MaterialApp(
         title: 'Additive Food',
-        theme: injection.get<ThemeData>(),
+        initialRoute: SplashScreen.route,
+        theme: injection.get(),
         navigatorKey: NavigatorHolder.navigatorKey,
         routes: createRoutes(),
       ),

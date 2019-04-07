@@ -39,7 +39,7 @@ class AdditiveListWidgetState extends State<AdditiveListScreen> {
                 } else {
                   return ListView.builder(
                       itemCount: state.additives.length,
-                      itemBuilder: (BuildContext ctxt, int index) {
+                      itemBuilder: (BuildContext context, int index) {
                         return buildListItem(state.additives, index);
                       });
                 }
