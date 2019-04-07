@@ -15,11 +15,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
-
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppState>(
-        onInit: (store) => store.dispatch(splashCountdownAction),
+        onInit: (store) => store.dispatch(SplashCountdownAction(store)),
         converter: (store) => store.state,
         builder: (context, state) {
           return Image(

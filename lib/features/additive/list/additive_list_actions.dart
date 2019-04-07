@@ -3,7 +3,6 @@ import 'package:additive_food/data/adittive/model/additive.dart';
 import 'package:additive_food/features/app/app_state.dart';
 import 'package:additive_food/main.dart';
 import 'package:redux/redux.dart';
-import 'package:redux_thunk/redux_thunk.dart';
 
 class LoadingAction {}
 
@@ -19,12 +18,14 @@ class AdditiveLoadingError {
   AdditiveLoadingError(this.error);
 }
 
-ThunkAction<AppState> loadAdditivesAction = (Store<AppState> store) async {
-  store.dispatch(LoadingAction());
-  AdditiveRepository repository = injection.get<AdditiveRepository>();
+class LoadAdditivesAction {
+  LoadAdditivesAction(Store<AppState> store) {
+    store.dispatch(LoadingAction());
+    AdditiveRepository repository = injection.get<AdditiveRepository>();
 
-  repository
-      .fetchAdditives()
-      .then((value) => store.dispatch(AdditivesLoadedAction(value)))
-      .catchError((error) => store.dispatch(AdditiveLoadingError(error)));
-};
+    repository
+        .fetchAdditives()
+        .then((value) => store.dispatch(AdditivesLoadedAction(value)))
+        .catchError((error) => store.dispatch(AdditiveLoadingError(error)));
+  }
+}

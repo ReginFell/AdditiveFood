@@ -1,10 +1,9 @@
 import 'dart:async';
 
+import 'package:additive_food/features/additive/list/additive_list_screen.dart';
 import 'package:additive_food/features/home/home_navigator.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
-
-import '../additive/list/screen/additive_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static final String route = '/home';
@@ -34,14 +33,7 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   Future<bool> _willPopCallback() async {
-    final navigationState = _pages[_currentPage].navigator.currentState;
-
-    final bool hasPages = navigationState.canPop();
-    if (hasPages) {
-      navigationState.pop();
-    }
-
-    return !await navigationState.maybePop();
+    return !await _pages[_currentPage].navigator.currentState.maybePop();
   }
 
   @override

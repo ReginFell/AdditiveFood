@@ -1,7 +1,7 @@
 import 'package:additive_food/data/adittive/model/additive.dart';
 import 'package:built_value/built_value.dart';
 
-part 'additive_list_state.g.dart';
+part 'package:additive_food/features/additive/list/additive_list_state.g.dart';
 
 abstract class AdditiveListState
     implements Built<AdditiveListState, AdditiveListStateBuilder> {

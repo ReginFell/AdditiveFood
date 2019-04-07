@@ -1,6 +1,7 @@
-import 'action/additive_list_actions.dart';
-import 'state/additive_list_state.dart';
 import 'package:redux/redux.dart';
+
+import 'additive_list_actions.dart';
+import 'additive_list_state.dart';
 
 Reducer<AdditiveListState> additiveListReducer = combineReducers([
   TypedReducer<AdditiveListState, LoadingAction>(loading),

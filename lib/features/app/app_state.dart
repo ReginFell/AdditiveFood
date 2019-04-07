@@ -1,4 +1,4 @@
-import '../additive/list/state/additive_list_state.dart';
+import 'package:additive_food/features/additive/list/additive_list_state.dart';
 import 'package:built_value/built_value.dart';
 
 part 'app_state.g.dart';

@@ -1,12 +1,12 @@
 import 'package:additive_food/data/adittive/model/additive.dart';
-import 'package:additive_food/features/additive/details/screen/additive_details_screen.dart';
-import 'package:additive_food/features/additive/list/action/additive_list_actions.dart';
+import 'package:additive_food/features/additive/details/additive_details_screen.dart';
 import 'package:additive_food/features/app/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-import '../state/additive_list_state.dart';
+import 'additive_list_actions.dart';
+import 'additive_list_state.dart';
 
 class AdditiveListScreen extends StatefulWidget {
   static final String route = '/additive_list';
@@ -21,7 +21,8 @@ class AdditiveListWidgetState extends State<AdditiveListScreen> {
   @override
   Widget build(BuildContext context) {
     return StoreBuilder(
-        onInit: (Store<AppState> store) => store.dispatch(loadAdditivesAction),
+        onInit: (Store<AppState> store) =>
+            store.dispatch(LoadAdditivesAction(store)),
         builder: (BuildContext context, Store<AppState> store) {
           return StoreConnector<AppState, AdditiveListState>(
               converter: (store) => store.state.additiveListState,
@@ -33,7 +34,7 @@ class AdditiveListWidgetState extends State<AdditiveListScreen> {
                   return RaisedButton(
                     child: Text(state.error.toString()),
                     onPressed: () {
-                      store.dispatch(loadAdditivesAction);
+                      store.dispatch(LoadAdditivesAction(store));
                     },
                   );
                 } else {

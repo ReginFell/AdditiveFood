@@ -2,15 +2,14 @@ import 'package:additive_food/config.dart';
 import 'package:additive_food/features/app/app_state.dart';
 import 'package:additive_food/features/home/home_screen.dart';
 import 'package:additive_food/features/splash/splash_screen.dart';
-import 'package:additive_food/injection.dart';
 import 'package:additive_food/injection/additive_module.dart';
 import 'package:additive_food/injection/app_module.dart';
 import 'package:additive_food/injection/getit_module.dart';
+import 'package:additive_food/injection/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:redux/redux.dart';
-import 'package:redux_logging/redux_logging.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
 import 'features/app/app_reducer.dart';
@@ -63,12 +62,11 @@ Map<String, WidgetBuilder> createRoutes() {
 }
 
 Store<AppState> createStore() {
-  Store<AppState> store = Store(appReducer,
-      initialState: AppState(),
-      middleware: [
-        thunkMiddleware,
-        NavigationMiddleware<AppState>(),
-        LoggingMiddleware.printer()
-      ]);
+  Store<AppState> store =
+      Store(appReducer, initialState: AppState(), middleware: [
+    thunkMiddleware,
+    NavigationMiddleware<AppState>(),
+    //LoggingMiddleware.printer()
+  ]);
   return store;
 }
