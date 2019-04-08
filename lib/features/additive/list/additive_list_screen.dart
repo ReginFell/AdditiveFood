@@ -13,7 +13,7 @@ class AdditiveListScreen extends StatefulWidget {
 
   @override
   AdditiveListWidgetState createState() {
-    return new AdditiveListWidgetState();
+    return AdditiveListWidgetState();
   }
 }
 
@@ -21,7 +21,7 @@ class AdditiveListWidgetState extends State<AdditiveListScreen> {
   @override
   Widget build(BuildContext context) {
     return StoreBuilder(
-        onInit: (Store<AppState> store) =>
+        onInitialBuild: (Store<AppState> store) =>
             store.dispatch(LoadAdditivesAction(store)),
         builder: (BuildContext context, Store<AppState> store) {
           return StoreConnector<AppState, AdditiveListState>(

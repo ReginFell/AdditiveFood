@@ -20,8 +20,7 @@ class HomeScreenState extends State<HomeScreen> {
     Page(1, AdditiveListScreen.route, GlobalKey<NavigatorState>(),
         (_) => AdditiveListScreen()),
     Page(2, "/123", GlobalKey<NavigatorState>(), (_) => Text("21")),
-    Page(3, AdditiveListScreen.route, GlobalKey<NavigatorState>(),
-        (_) => AdditiveListScreen()),
+    Page(3, "/1234", GlobalKey<NavigatorState>(), (_) => Text("last")),
   ];
 
   int _currentPage = 1;
@@ -61,7 +60,7 @@ class HomeScreenState extends State<HomeScreen> {
   Widget _buildOffstageNavigator(Page page) {
     return Offstage(
       offstage: _currentPage != page.index,
-      child: HomeNavigator(page: page),
+      child: HomeNavigator(page),
     );
   }
 
