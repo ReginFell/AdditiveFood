@@ -12,12 +12,12 @@ class AdditiveListScreen extends StatefulWidget {
   static final String route = '/additive_list';
 
   @override
-  AdditiveListWidgetState createState() {
-    return AdditiveListWidgetState();
+  _AdditiveListState createState() {
+    return _AdditiveListState();
   }
 }
 
-class AdditiveListWidgetState extends State<AdditiveListScreen> {
+class _AdditiveListState extends State<AdditiveListScreen> {
   @override
   Widget build(BuildContext context) {
     return StoreBuilder(
@@ -51,11 +51,12 @@ class AdditiveListWidgetState extends State<AdditiveListScreen> {
   Widget buildListItem(List<Additive> additives, int index) {
     return InkWell(
         child: Container(
-            margin: const EdgeInsets.all(16.0),
+            margin: const EdgeInsets.only(
+                left: 16.0, right: 16.0, top: 8, bottom: 8),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(additives[index].id),
               Text(additives[index].name),
+              Text(additives[index].synonym),
             ])),
         onTap: () {
           Navigator.push(

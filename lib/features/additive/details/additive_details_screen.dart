@@ -9,15 +9,15 @@ class AdditiveDetailsScreen extends StatefulWidget {
   AdditiveDetailsScreen({Key key, @required this.additive}) : super(key: key);
 
   @override
-  AdditiveDetailsWidgetState createState() {
-    return new AdditiveDetailsWidgetState(additive);
+  _AdditiveDetailsState createState() {
+    return new _AdditiveDetailsState(additive);
   }
 }
 
-class AdditiveDetailsWidgetState extends State<AdditiveDetailsScreen> {
+class _AdditiveDetailsState extends State<AdditiveDetailsScreen> {
   final Additive additive;
 
-  AdditiveDetailsWidgetState(this.additive);
+  _AdditiveDetailsState(this.additive);
 
   @override
   Widget build(BuildContext context) {

@@ -22,6 +22,7 @@ dependencies:
   http:
   get_it:
   bubble_bottom_bar:
+  camera:
 
 dev_dependencies:
   flutter_test:

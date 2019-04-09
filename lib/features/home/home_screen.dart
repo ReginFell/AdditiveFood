@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:additive_food/features/additive/list/additive_list_screen.dart';
+import 'package:additive_food/features/camera/camera_screen.dart';
 import 'package:additive_food/features/home/home_navigator.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +10,15 @@ class HomeScreen extends StatefulWidget {
   static final String route = '/home';
 
   @override
-  HomeScreenState createState() {
-    return new HomeScreenState();
+  _HomeScreenState createState() {
+    return _HomeScreenState();
   }
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   final List<Page> _pages = [
-    Page(0, "/2", GlobalKey<NavigatorState>(), (_) => Text("Hello")),
+    Page(0, CameraScreen.route, GlobalKey<NavigatorState>(),
+        (_) => CameraScreen()),
     Page(1, AdditiveListScreen.route, GlobalKey<NavigatorState>(),
         (_) => AdditiveListScreen()),
     Page(2, "/123", GlobalKey<NavigatorState>(), (_) => Text("21")),
@@ -74,7 +76,7 @@ class HomeScreenState extends State<HomeScreen> {
         BubbleBottomBarItem(
             backgroundColor: accentColor,
             icon: Icon(
-              Icons.home,
+              Icons.camera,
               color: Colors.black,
             ),
             activeIcon: Icon(
