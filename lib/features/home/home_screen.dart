@@ -80,10 +80,10 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.black,
             ),
             activeIcon: Icon(
-              Icons.home,
+              Icons.camera,
               color: accentColor,
             ),
-            title: Text("Витамины")),
+            title: Text("Camera")),
         BubbleBottomBarItem(
             backgroundColor: accentColor,
             icon: Icon(
