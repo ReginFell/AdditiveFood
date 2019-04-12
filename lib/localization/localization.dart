@@ -4,33 +4,32 @@ import 'package:additive_food/localization/translations/messages_all.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class Localization {
-  static Future<Localization> load(Locale locale) {
+class AppLocalizations {
+  static Future<AppLocalizations> load(Locale locale) {
     final String name =
         locale.countryCode == null ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
 
     return initializeMessages(localeName).then((bool _) {
       Intl.defaultLocale = localeName;
-      return new Localization();
+      return new AppLocalizations();
     });
   }
 
-  static Localization of(BuildContext context) {
-    return Localizations.of<Localization>(context, Localization);
+  static AppLocalizations of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
   String get title {
-    return Intl.message('Hello world App',
-        name: 'title', desc: 'The application title');
+    return Intl.message('Additive Food', name: 'title');
   }
 
-  String get hello {
-    return Intl.message('Hello', name: 'hello');
+  String get additiveList {
+    return Intl.message('Additive List', name: 'additiveList');
   }
 }
 
-class AppLocalizationsDelegate extends LocalizationsDelegate<Localization> {
+class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const AppLocalizationsDelegate();
 
   @override
@@ -39,12 +38,12 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<Localization> {
   }
 
   @override
-  Future<Localization> load(Locale locale) {
-    return Localization.load(locale);
+  Future<AppLocalizations> load(Locale locale) {
+    return AppLocalizations.load(locale);
   }
 
   @override
-  bool shouldReload(LocalizationsDelegate<Localization> old) {
+  bool shouldReload(LocalizationsDelegate<AppLocalizations> old) {
     return false;
   }
 }

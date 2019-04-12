@@ -6,7 +6,9 @@ import 'package:additive_food/injection/additive_module.dart';
 import 'package:additive_food/injection/app_module.dart';
 import 'package:additive_food/injection/getit_module.dart';
 import 'package:additive_food/injection/injection.dart';
+import 'package:additive_food/localization/localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:redux/redux.dart';
@@ -44,7 +46,16 @@ class AdditiveFoodAppState extends State<AdditiveFoodApplication> {
     return StoreProvider<AppState>(
       store: widget.store,
       child: MaterialApp(
-        title: 'Additive Food',
+        localizationsDelegates: [
+          AppLocalizationsDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        onGenerateTitle: (BuildContext context) =>
+            AppLocalizations.of(context).title,
+        supportedLocales: [
+          const Locale("en"),
+        ],
         initialRoute: SplashScreen.route,
         theme: injection.get(),
         navigatorKey: NavigatorHolder.navigatorKey,
