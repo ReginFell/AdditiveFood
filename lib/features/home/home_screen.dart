@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:additive_food/features/additive/list/additive_list_screen.dart';
 import 'package:additive_food/features/home/home_navigator.dart';
 import 'package:additive_food/localization/localization.dart';
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -69,54 +68,35 @@ class _HomeScreenState extends State<HomeScreen> {
     final accentColor = Theme.of(context).accentColor;
     final localization = AppLocalizations.of(context);
 
-    return BubbleBottomBar(
-      opacity: .2,
+    return BottomNavigationBar(
       currentIndex: _currentPage,
+      type: BottomNavigationBarType.fixed,
       items: [
-        BubbleBottomBarItem(
-            backgroundColor: accentColor,
+        BottomNavigationBarItem(
             icon: Icon(
-              Icons.list,
-              color: Colors.black,
-            ),
-            activeIcon: Icon(
               Icons.list,
               color: accentColor,
             ),
-            title: Text(localization.additiveList)),
-        BubbleBottomBarItem(
-            backgroundColor: accentColor,
+            title: Text(localization.additiveList,
+                style: Theme.of(context).textTheme.body1)),
+        BottomNavigationBarItem(
             icon: Icon(
-              Icons.mail,
-              color: Colors.black,
-            ),
-            activeIcon: Icon(
               Icons.mail,
               color: accentColor,
             ),
-            title: Text("Добавки")),
-        BubbleBottomBarItem(
-            backgroundColor: accentColor,
+            title: Text("Добавки", style: Theme.of(context).textTheme.body1)),
+        BottomNavigationBarItem(
             icon: Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-            activeIcon: Icon(
               Icons.search,
               color: accentColor,
             ),
-            title: Text("Поиск")),
-        BubbleBottomBarItem(
-            backgroundColor: accentColor,
+            title: Text("Поиск", style: Theme.of(context).textTheme.body1)),
+        BottomNavigationBarItem(
             icon: Icon(
-              Icons.person,
-              color: Colors.black,
-            ),
-            activeIcon: Icon(
               Icons.person,
               color: accentColor,
             ),
-            title: Text("Профиль")),
+            title: Text("Профиль", style: Theme.of(context).textTheme.body1)),
       ],
       onTap: (index) {
         _openPage(index);

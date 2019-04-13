@@ -38,10 +38,13 @@ class _AdditiveListState extends State<AdditiveListScreen> {
                     },
                   );
                 } else {
-                  return ListView.builder(
+                  return ListView.separated(
                       itemCount: state.additives.length,
                       itemBuilder: (BuildContext context, int index) {
                         return buildListItem(state.additives, index);
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return Divider();
                       });
                 }
               });
@@ -51,12 +54,17 @@ class _AdditiveListState extends State<AdditiveListScreen> {
   Widget buildListItem(List<Additive> additives, int index) {
     return InkWell(
         child: Container(
-            margin: const EdgeInsets.only(
+            padding: const EdgeInsets.only(
                 left: 16.0, right: 16.0, top: 8, bottom: 8),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(additives[index].name),
-              Text(additives[index].synonym),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(additives[index].name,
+                  style: Theme.of(context).textTheme.title),
+              Padding(
+                padding: EdgeInsets.only(left: 8),
+              ),
+              Text(additives[index].synonym,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.subtitle),
             ])),
         onTap: () {
           Navigator.push(

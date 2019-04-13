@@ -1,8 +1,8 @@
 import 'package:additive_food/data/api.dart';
 import 'package:additive_food/injection/getit_module.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 
 class AppModule implements GetItModule {
   final String apiUrl;
@@ -27,14 +27,20 @@ class AppModule implements GetItModule {
   }
 
   ThemeData _createTheme() {
+    final colorAccent = Color(0xFF6E0091);
+
     return ThemeData(
+      dividerColor: Color(0xFF56FFAB),
       brightness: Brightness.light,
       primaryColor: Colors.white,
-      accentColor: Colors.cyan[600],
+      accentColor: colorAccent,
       textTheme: TextTheme(
-        headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-        title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-        body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+        headline: TextStyle(
+            fontSize: 72.0, fontWeight: FontWeight.bold, color: colorAccent),
+        title: TextStyle(
+            fontSize: 14.0, fontWeight: FontWeight.bold, color: colorAccent),
+        subtitle: TextStyle(fontSize: 14.0, color: colorAccent),
+        body1: TextStyle(fontSize: 14.0, color: colorAccent),
       ),
     );
   }
