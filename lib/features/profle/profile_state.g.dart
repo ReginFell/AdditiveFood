@@ -9,11 +9,13 @@ part of 'profile_state.dart';
 class _$ProfileState extends ProfileState {
   @override
   final bool isLoading;
+  @override
+  final User user;
 
   factory _$ProfileState([void updates(ProfileStateBuilder b)]) =>
       (new ProfileStateBuilder()..update(updates)).build();
 
-  _$ProfileState._({this.isLoading}) : super._() {
+  _$ProfileState._({this.isLoading, this.user}) : super._() {
     if (isLoading == null) {
       throw new BuiltValueNullFieldError('ProfileState', 'isLoading');
     }
@@ -29,18 +31,21 @@ class _$ProfileState extends ProfileState {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ProfileState && isLoading == other.isLoading;
+    return other is ProfileState &&
+        isLoading == other.isLoading &&
+        user == other.user;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, isLoading.hashCode));
+    return $jf($jc($jc(0, isLoading.hashCode), user.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('ProfileState')
-          ..add('isLoading', isLoading))
+          ..add('isLoading', isLoading)
+          ..add('user', user))
         .toString();
   }
 }
@@ -53,11 +58,16 @@ class ProfileStateBuilder
   bool get isLoading => _$this._isLoading;
   set isLoading(bool isLoading) => _$this._isLoading = isLoading;
 
+  User _user;
+  User get user => _$this._user;
+  set user(User user) => _$this._user = user;
+
   ProfileStateBuilder();
 
   ProfileStateBuilder get _$this {
     if (_$v != null) {
       _isLoading = _$v.isLoading;
+      _user = _$v.user;
       _$v = null;
     }
     return this;
@@ -78,7 +88,8 @@ class ProfileStateBuilder
 
   @override
   _$ProfileState build() {
-    final _$result = _$v ?? new _$ProfileState._(isLoading: isLoading);
+    final _$result =
+        _$v ?? new _$ProfileState._(isLoading: isLoading, user: user);
     replace(_$result);
     return _$result;
   }
