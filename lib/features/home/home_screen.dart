@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:additive_food/features/additive/list/additive_list_screen.dart';
 import 'package:additive_food/features/home/home_navigator.dart';
+import 'package:additive_food/features/profle/profile_screen.dart';
 import 'package:additive_food/localization/localization.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
         (_) => AdditiveListScreen()),
     Page(1, "/12345", GlobalKey<NavigatorState>(), (_) => Text("1233")),
     Page(2, "/123", GlobalKey<NavigatorState>(), (_) => Text("21")),
-    Page(3, "/1234", GlobalKey<NavigatorState>(), (_) => Text("last")),
+    Page(3, ProfileScreen.route, GlobalKey<NavigatorState>(),
+        (_) => ProfileScreen()),
   ];
 
   int _currentPage = 0;
@@ -47,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text('Additive Food'),
+      title: Text(AppLocalizations.of(context).title),
       elevation: 0.0,
     );
   }
@@ -66,9 +68,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildBottomNavigation(BuildContext context) {
     final accentColor = Theme.of(context).accentColor;
+    final highlightColor = Theme.of(context).highlightColor;
     final localization = AppLocalizations.of(context);
 
     return BottomNavigationBar(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       currentIndex: _currentPage,
       type: BottomNavigationBarType.fixed,
       items: [
@@ -77,6 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.list,
               color: accentColor,
             ),
+            activeIcon: Icon(
+              Icons.list,
+              color: highlightColor,
+            ),
             title: Text(localization.additiveList,
                 style: Theme.of(context).textTheme.body1)),
         BottomNavigationBarItem(
@@ -84,17 +93,29 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.mail,
               color: accentColor,
             ),
+            activeIcon: Icon(
+              Icons.mail,
+              color: highlightColor,
+            ),
             title: Text("Добавки", style: Theme.of(context).textTheme.body1)),
         BottomNavigationBarItem(
             icon: Icon(
               Icons.search,
               color: accentColor,
             ),
+            activeIcon: Icon(
+              Icons.search,
+              color: highlightColor,
+            ),
             title: Text("Поиск", style: Theme.of(context).textTheme.body1)),
         BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
               color: accentColor,
+            ),
+            activeIcon: Icon(
+              Icons.person,
+              color: highlightColor,
             ),
             title: Text("Профиль", style: Theme.of(context).textTheme.body1)),
       ],

@@ -33,6 +33,7 @@ class AppModule implements GetItModule {
       dividerColor: Color(0xFF56FFAB),
       brightness: Brightness.light,
       primaryColor: Colors.white,
+      highlightColor: Color(0xFF56FFAB),
       accentColor: colorAccent,
       textTheme: TextTheme(
         headline: TextStyle(

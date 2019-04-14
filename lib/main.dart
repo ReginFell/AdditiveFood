@@ -15,14 +15,16 @@ import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
 import 'features/app/app_reducer.dart';
+import 'injection/user_module.dart';
 
 Injection injection;
 
 void main() {
   final appModule = AppModule(apiUrl, language);
   final additiveModule = AdditiveModule();
+  final userModule = UserModule();
 
-  final List<GetItModule> modules = [appModule, additiveModule];
+  final List<GetItModule> modules = [appModule, additiveModule, userModule];
 
   injection = Injection(modules);
 
