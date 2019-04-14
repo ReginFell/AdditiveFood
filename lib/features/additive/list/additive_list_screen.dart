@@ -62,9 +62,11 @@ class _AdditiveListState extends State<AdditiveListScreen> {
               Padding(
                 padding: EdgeInsets.only(left: 8),
               ),
-              Text(additives[index].synonym,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.subtitle),
+              Flexible(
+                child: Text(additives[index].synonym,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.subtitle),
+              )
             ])),
         onTap: () {
           Navigator.push(
