@@ -27,7 +27,8 @@ class AppModule implements GetItModule {
   }
 
   ThemeData _createTheme() {
-    final colorAccent = Color(0xFF6E0091);
+    final colorAccent = Color(0xFFb5b5b5);
+    final textColor = Color(0xFF6E0091);
 
     return ThemeData(
       dividerColor: Color(0xFF56FFAB),
@@ -37,11 +38,11 @@ class AppModule implements GetItModule {
       accentColor: colorAccent,
       textTheme: TextTheme(
         headline: TextStyle(
-            fontSize: 72.0, fontWeight: FontWeight.bold, color: colorAccent),
+            fontSize: 72.0, fontWeight: FontWeight.bold, color: textColor),
         title: TextStyle(
-            fontSize: 14.0, fontWeight: FontWeight.bold, color: colorAccent),
-        subtitle: TextStyle(fontSize: 14.0, color: colorAccent),
-        body1: TextStyle(fontSize: 14.0, color: colorAccent),
+            fontSize: 14.0, fontWeight: FontWeight.bold, color: textColor),
+        subtitle: TextStyle(fontSize: 14.0, color: textColor),
+        body1: TextStyle(fontSize: 14.0, color: textColor),
       ),
     );
   }

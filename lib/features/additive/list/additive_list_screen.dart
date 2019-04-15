@@ -44,7 +44,9 @@ class _AdditiveListState extends State<AdditiveListScreen> {
                         return buildListItem(state.additives, index);
                       },
                       separatorBuilder: (BuildContext context, int index) {
-                        return Divider();
+                        return Divider(
+                          height: 1,
+                        );
                       });
                 }
               });
@@ -54,8 +56,7 @@ class _AdditiveListState extends State<AdditiveListScreen> {
   Widget buildListItem(List<Additive> additives, int index) {
     return InkWell(
         child: Container(
-            padding: const EdgeInsets.only(
-                left: 16.0, right: 16.0, top: 8, bottom: 8),
+            padding: EdgeInsets.all(16),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(additives[index].name,
                   style: Theme.of(context).textTheme.title),

@@ -5,6 +5,7 @@ import 'package:additive_food/features/home/home_navigator.dart';
 import 'package:additive_food/features/profle/profile_screen.dart';
 import 'package:additive_food/localization/localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   static final String route = '/home';
@@ -21,7 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
         (_) => AdditiveListScreen()),
     Page(1, "/12345", GlobalKey<NavigatorState>(), (_) => Text("1233")),
     Page(2, "/123", GlobalKey<NavigatorState>(), (_) => Text("21")),
-    Page(3, ProfileScreen.route, GlobalKey<NavigatorState>(),
+    Page(3, "/12321212", GlobalKey<NavigatorState>(), (_) => Text("sss")),
+    Page(4, ProfileScreen.route, GlobalKey<NavigatorState>(),
         (_) => ProfileScreen()),
   ];
 
@@ -70,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final accentColor = Theme.of(context).accentColor;
     final highlightColor = Theme.of(context).highlightColor;
     final localization = AppLocalizations.of(context);
+    final iconHeight = 22.0;
 
     return BottomNavigationBar(
       showSelectedLabels: false,
@@ -78,43 +81,63 @@ class _HomeScreenState extends State<HomeScreen> {
       type: BottomNavigationBarType.fixed,
       items: [
         BottomNavigationBarItem(
-            icon: Icon(
-              Icons.list,
+            icon: SvgPicture.asset(
+              "assets/icons/menu.svg",
+              height: iconHeight,
               color: accentColor,
             ),
-            activeIcon: Icon(
-              Icons.list,
+            activeIcon: SvgPicture.asset(
+              "assets/icons/menu.svg",
+              height: iconHeight,
               color: highlightColor,
             ),
             title: Text(localization.additiveList,
                 style: Theme.of(context).textTheme.body1)),
         BottomNavigationBarItem(
-            icon: Icon(
-              Icons.mail,
+            icon: SvgPicture.asset(
+              "assets/icons/search.svg",
+              height: iconHeight,
               color: accentColor,
             ),
-            activeIcon: Icon(
-              Icons.mail,
+            activeIcon: SvgPicture.asset(
+              "assets/icons/search.svg",
+              height: iconHeight,
               color: highlightColor,
             ),
             title: Text("Добавки", style: Theme.of(context).textTheme.body1)),
         BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
+            icon: SvgPicture.asset(
+              "assets/icons/camera.svg",
+              height: iconHeight,
               color: accentColor,
             ),
-            activeIcon: Icon(
-              Icons.search,
+            activeIcon: SvgPicture.asset(
+              "assets/icons/camera.svg",
+              height: iconHeight,
               color: highlightColor,
             ),
             title: Text("Поиск", style: Theme.of(context).textTheme.body1)),
         BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
+            icon: SvgPicture.asset(
+              "assets/icons/favorite.svg",
+              height: iconHeight,
               color: accentColor,
             ),
-            activeIcon: Icon(
-              Icons.person,
+            activeIcon: SvgPicture.asset(
+              "assets/icons/favorite.svg",
+              height: iconHeight,
+              color: highlightColor,
+            ),
+            title: Text("Избранное", style: Theme.of(context).textTheme.body1)),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              "assets/icons/profile.svg",
+              height: iconHeight,
+              color: accentColor,
+            ),
+            activeIcon: SvgPicture.asset(
+              "assets/icons/profile.svg",
+              height: iconHeight,
               color: highlightColor,
             ),
             title: Text("Профиль", style: Theme.of(context).textTheme.body1)),

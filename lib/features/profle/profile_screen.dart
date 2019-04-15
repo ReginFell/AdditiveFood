@@ -29,8 +29,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   return Center(child: CircularProgressIndicator());
                 } else if (!state.isLoading && state.user == null) {
                   return Center(
-                      child: RaisedButton(
-                    child: Text("You don't have an account?"),
+                      child: FlatButton(
+                    color: Theme.of(context).accentColor,
+                    child: Text("You Don't have an account?"),
                     onPressed: null,
                   ));
                 }
