@@ -1,5 +1,7 @@
+import 'package:additive_food/core/app_theme_widget.dart';
 import 'package:additive_food/features/app/app_state.dart';
 import 'package:additive_food/features/profle/profile_actions.dart';
+import 'package:additive_food/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -28,14 +30,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 if (state.isLoading) {
                   return Center(child: CircularProgressIndicator());
                 } else if (!state.isLoading && state.user == null) {
-                  return Center(
-                      child: FlatButton(
-                    color: Theme.of(context).accentColor,
-                    child: Text("You Don't have an account?"),
-                    onPressed: null,
-                  ));
+                  return buildLogin(context);
                 }
               });
         });
+  }
+
+  Widget buildLogin(BuildContext context) {
+    final localization = AppLocalizations.of(context);
+    final hintColor = ThemeContainer.of(context).hintColor;
+    final underlineColor = ThemeContainer.of(context).textFieldUnderlineColor;
+
+    return Center(
+      child: Container(
+        margin: EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                  hintText: 'login',
+                  hintStyle: TextStyle(color: hintColor),
+                  labelStyle: TextStyle(decorationColor: underlineColor),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: underlineColor)),
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: underlineColor))),
+            ),
+            TextField(
+                decoration: InputDecoration(
+                    hintText: 'password',
+                    hintStyle: TextStyle(color: hintColor),
+                    labelStyle: TextStyle(decorationColor: underlineColor),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: underlineColor)),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: underlineColor)))),
+          ],
+        ),
+      ),
+    );
   }
 }

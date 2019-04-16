@@ -1,4 +1,4 @@
-import 'package:additive_food/config.dart';
+import 'package:additive_food/core/config.dart';
 import 'package:additive_food/features/app/app_state.dart';
 import 'package:additive_food/features/home/home_screen.dart';
 import 'package:additive_food/features/splash/splash_screen.dart';
@@ -14,6 +14,7 @@ import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
+import 'core/app_theme_widget.dart';
 import 'features/app/app_reducer.dart';
 import 'injection/user_module.dart';
 
@@ -47,7 +48,8 @@ class AdditiveFoodAppState extends State<AdditiveFoodApplication> {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: widget.store,
-      child: MaterialApp(
+      child: ThemeContainer(
+          child: MaterialApp(
         localizationsDelegates: [
           AppLocalizationsDelegate(),
           GlobalMaterialLocalizations.delegate,
@@ -59,12 +61,33 @@ class AdditiveFoodAppState extends State<AdditiveFoodApplication> {
           const Locale("en"),
         ],
         initialRoute: SplashScreen.route,
-        theme: injection.get(),
+        theme: createTheme(context),
         navigatorKey: NavigatorHolder.navigatorKey,
         routes: createRoutes(),
-      ),
+      )),
     );
   }
+}
+
+ThemeData createTheme(BuildContext context) {
+  final colorAccent = Color(0xFFb5b5b5);
+  final textColor = Color(0xFF6E0091);
+  final colorAccentSecondary = Color(0xFF56FFAB);
+
+  return ThemeData(
+    dividerColor: colorAccentSecondary,
+    brightness: Brightness.light,
+    primaryColor: Colors.white,
+    accentColor: colorAccent,
+    textTheme: TextTheme(
+      headline: TextStyle(
+          fontSize: 72.0, fontWeight: FontWeight.bold, color: textColor),
+      title: TextStyle(
+          fontSize: 14.0, fontWeight: FontWeight.bold, color: textColor),
+      subtitle: TextStyle(fontSize: 14.0, color: textColor),
+      body1: TextStyle(fontSize: 14.0, color: textColor),
+    ),
+  );
 }
 
 Map<String, WidgetBuilder> createRoutes() {

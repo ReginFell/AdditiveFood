@@ -27,6 +27,10 @@ class AppLocalizations {
   String get additiveList {
     return Intl.message('Additive List', name: 'additiveList');
   }
+
+  String get dontHaveAnAccount {
+    return Intl.message('Don\'t have an account?', name: 'dontHavAnAccount');
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:additive_food/core/app_theme_widget.dart';
 import 'package:additive_food/features/additive/list/additive_list_screen.dart';
 import 'package:additive_food/features/home/home_navigator.dart';
 import 'package:additive_food/features/profle/profile_screen.dart';
@@ -69,10 +70,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildBottomNavigation(BuildContext context) {
-    final accentColor = Theme.of(context).accentColor;
-    final highlightColor = Theme.of(context).highlightColor;
+    final accentColor = ThemeContainer.of(context).colorAccent;
+    final highlightColor = ThemeContainer.of(context).colorAccentSecondary;
     final localization = AppLocalizations.of(context);
-    final iconHeight = 22.0;
+    final iconHeight = ThemeContainer.of(context).bottomMenuIconHeight;
 
     return BottomNavigationBar(
       showSelectedLabels: false,
@@ -91,8 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: iconHeight,
               color: highlightColor,
             ),
-            title: Text(localization.additiveList,
-                style: Theme.of(context).textTheme.body1)),
+            title: Text(localization.additiveList)),
         BottomNavigationBarItem(
             icon: SvgPicture.asset(
               "assets/icons/search.svg",
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: iconHeight,
               color: highlightColor,
             ),
-            title: Text("Добавки", style: Theme.of(context).textTheme.body1)),
+            title: Text("Добавки")),
         BottomNavigationBarItem(
             icon: SvgPicture.asset(
               "assets/icons/camera.svg",
