@@ -50,6 +50,7 @@ class AdditiveFoodAppState extends State<AdditiveFoodApplication> {
       store: widget.store,
       child: ThemeContainer(
           child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         localizationsDelegates: [
           AppLocalizationsDelegate(),
           GlobalMaterialLocalizations.delegate,
@@ -82,8 +83,7 @@ ThemeData createTheme(BuildContext context) {
     textTheme: TextTheme(
       headline: TextStyle(
           fontSize: 72.0, fontWeight: FontWeight.bold, color: textColor),
-      title: TextStyle(
-          fontSize: 14.0, fontWeight: FontWeight.bold, color: textColor),
+      title: TextStyle(fontSize: 14.0, color: textColor),
       subtitle: TextStyle(fontSize: 14.0, color: textColor),
       body1: TextStyle(fontSize: 14.0, color: textColor),
     ),

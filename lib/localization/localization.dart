@@ -31,6 +31,22 @@ class AppLocalizations {
   String get dontHaveAnAccount {
     return Intl.message('Don\'t have an account?', name: 'dontHavAnAccount');
   }
+
+  String get login {
+    return Intl.message('login', name: 'login');
+  }
+
+  String get password {
+    return Intl.message('password', name: 'password');
+  }
+
+  String get signIn {
+    return Intl.message('sign in', name: 'signIn');
+  }
+
+  String get signUp {
+    return Intl.message('sign up', name: 'signUp');
+  }
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

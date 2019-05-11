@@ -1,5 +1,6 @@
 import 'package:additive_food/core/app_theme_widget.dart';
 import 'package:additive_food/features/app/app_state.dart';
+import 'package:additive_food/features/core/ui/password_field.dart';
 import 'package:additive_food/features/profle/profile_actions.dart';
 import 'package:additive_food/localization/localization.dart';
 import 'package:flutter/material.dart';
@@ -45,10 +46,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Container(
         margin: EdgeInsets.all(16),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             TextField(
               decoration: InputDecoration(
-                  hintText: 'login',
+                  hintText: localization.login,
                   hintStyle: TextStyle(color: hintColor),
                   labelStyle: TextStyle(decorationColor: underlineColor),
                   focusedBorder: UnderlineInputBorder(
@@ -56,15 +59,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: underlineColor))),
             ),
-            TextField(
-                decoration: InputDecoration(
-                    hintText: 'password',
-                    hintStyle: TextStyle(color: hintColor),
-                    labelStyle: TextStyle(decorationColor: underlineColor),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: underlineColor)),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: underlineColor)))),
+            PasswordField(),
+            SizedBox(
+              height: 32,
+            ),
+            OutlineButton(
+              child: Text(
+                localization.signIn,
+                style: TextStyle(color: hintColor),
+              ),
+              borderSide: BorderSide(
+                color: underlineColor, //Color of the border
+                style: BorderStyle.solid, //Style of the border
+                width: 0.8, //width of the border
+              ),
+              onPressed: () {},
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            OutlineButton(
+              child: Text(
+                localization.signUp,
+                style: TextStyle(color: hintColor),
+              ),
+              borderSide: BorderSide(
+                color: underlineColor, //Color of the border
+                style: BorderStyle.solid, //Style of the border
+                width: 0.8, //width of the border
+              ),
+              onPressed: () {},
+            ),
           ],
         ),
       ),
