@@ -20,3 +20,14 @@ class LoadProfileAction {
     repository.me().then((user) => store.dispatch(ProfileLoadedAction(user)));
   }
 }
+
+class SignInAction {
+  SignInAction(Store<AppState> store, String email, String password) {
+    store.dispatch(StartLoadingAction());
+    UserRepository repository = injection.get<UserRepository>();
+
+    repository
+        .signIn(email, password)
+        .then((user) => store.dispatch(ProfileLoadedAction(user)));
+  }
+}

@@ -24,8 +24,12 @@ class AppThemeState extends State<ThemeContainer> {
   Color get colorAccent => Color(0xFFb5b5b5);
   Color get textColor => Color(0xFF6E0091);
   Color get colorAccentSecondary => Color(0xFF56FFAB);
-  Color get hintColor => Color(0xFF6E0091);
+  Color get textHintColor => Color(0xFF6E0091);
   Color get textFieldUnderlineColor => Color(0xFF56FFAB);
+
+  double get passwordSufficsIconSize => 26.0;
+
+  EdgeInsets get textFieldContentPadding => EdgeInsets.only(bottom: 4, top: 8);
 
   @override
   Widget build(BuildContext context) {

@@ -1,51 +1,52 @@
 import 'package:additive_food/core/app_theme_widget.dart';
-import 'package:additive_food/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class PasswordField extends StatefulWidget {
-  const PasswordField({
+const String eyeIconPath = "assets/icons/eye.svg";
+const String openEyeIconPath = "assets/icons/eye_open.svg";
+
+class LocalPasswordTextField extends StatefulWidget {
+  final Key fieldKey;
+  final String hintText;
+  final String labelText;
+  final FormFieldSetter<String> onSaved;
+  final FormFieldValidator<String> validator;
+  final ValueChanged<String> onFieldSubmitted;
+
+  const LocalPasswordTextField({
     this.fieldKey,
-    this.hintText,
+    @required this.hintText,
     this.labelText,
-    this.helperText,
     this.onSaved,
     this.validator,
     this.onFieldSubmitted,
   });
 
-  final Key fieldKey;
-  final String hintText;
-  final String labelText;
-  final String helperText;
-  final FormFieldSetter<String> onSaved;
-  final FormFieldValidator<String> validator;
-  final ValueChanged<String> onFieldSubmitted;
-
   @override
-  _PasswordFieldState createState() => new _PasswordFieldState();
+  _LocalPasswordTextFieldState createState() =>
+      new _LocalPasswordTextFieldState();
 }
 
-class _PasswordFieldState extends State<PasswordField> {
+class _LocalPasswordTextFieldState extends State<LocalPasswordTextField> {
   bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
-    final localization = AppLocalizations.of(context);
-    final hintColor = ThemeContainer.of(context).hintColor;
+    final hintColor = ThemeContainer.of(context).textHintColor;
     final underlineColor = ThemeContainer.of(context).textFieldUnderlineColor;
-    const iconSize = 26.0;
+    final textFieldPadding = ThemeContainer.of(context).textFieldContentPadding;
 
-    return AnimatedContainer(
-      duration: Duration(seconds: 1),
+    final iconSize = ThemeContainer.of(context).passwordSufficsIconSize;
+
+    return Container(
       child: Stack(
         children: <Widget>[
           TextFormField(
             obscureText: _obscureText,
             decoration: InputDecoration(
               contentPadding:
-                  EdgeInsets.only(bottom: 4, top: 8, right: iconSize),
-              hintText: localization.password,
+                  textFieldPadding.add(EdgeInsets.only(right: iconSize)),
+              hintText: widget.hintText,
               hintStyle: TextStyle(color: hintColor),
               labelStyle: TextStyle(decorationColor: underlineColor),
               focusedBorder: UnderlineInputBorder(
@@ -55,18 +56,17 @@ class _PasswordFieldState extends State<PasswordField> {
             ),
           ),
           Positioned(
-            bottom: 4,
+            bottom: textFieldPadding.bottom,
             right: 0,
             child: InkWell(
+              customBorder: CircleBorder(),
               onTap: () {
                 setState(() {
                   _obscureText = !_obscureText;
                 });
               },
               child: SvgPicture.asset(
-                _obscureText
-                    ? "assets/icons/eye.svg"
-                    : "assets/icons/eye_open.svg",
+                _obscureText ? eyeIconPath : openEyeIconPath,
                 height: iconSize,
                 color: hintColor,
               ),

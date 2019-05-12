@@ -19,7 +19,7 @@ dependencies:
   redux_logging:
   flutter_redux_navigation:
   cupertino_icons:
-  flutter_svg:
+  flutter_svg: 0.11.0
   rxdart:
   http:
   get_it:

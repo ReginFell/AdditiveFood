@@ -1,6 +1,8 @@
 import 'package:additive_food/core/app_theme_widget.dart';
 import 'package:additive_food/features/app/app_state.dart';
-import 'package:additive_food/features/core/ui/password_field.dart';
+import 'package:additive_food/features/core/ui/local_outline_button.dart';
+import 'package:additive_food/features/core/ui/local_password_text_field.dart';
+import 'package:additive_food/features/core/ui/local_text_field.dart';
 import 'package:additive_food/features/profle/profile_actions.dart';
 import 'package:additive_food/localization/localization.dart';
 import 'package:flutter/material.dart';
@@ -39,63 +41,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget buildLogin(BuildContext context) {
     final localization = AppLocalizations.of(context);
-    final hintColor = ThemeContainer.of(context).hintColor;
-    final underlineColor = ThemeContainer.of(context).textFieldUnderlineColor;
+    final hintColor = ThemeContainer.of(context).textHintColor;
 
-    return Center(
-      child: Container(
-        margin: EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              decoration: InputDecoration(
-                  hintText: localization.login,
-                  hintStyle: TextStyle(color: hintColor),
-                  labelStyle: TextStyle(decorationColor: underlineColor),
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: underlineColor)),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: underlineColor))),
-            ),
-            SizedBox(
-              height: 24,
-            ),
-            PasswordField(),
-            SizedBox(
-              height: 32,
-            ),
-            OutlineButton(
-              child: Text(
-                localization.signIn,
-                style: TextStyle(color: hintColor),
+    return StoreBuilder(builder: (BuildContext context, Store<AppState> store) {
+      StoreConnector<AppState, ProfileState>(
+          converter: (store) => store.state.profileState,
+          builder: (context, state) {
+            Center(
+              child: Container(
+                margin: EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    LocalTextField(hintText: localization.login),
+                    SizedBox(height: 24),
+                    LocalPasswordTextField(hintText: localization.password),
+                    SizedBox(height: 32),
+                    SizedBox(height: 8),
+                    LocalOutlineButton(
+                      child: Text(
+                        localization.signIn,
+                        style: TextStyle(color: hintColor),
+                      ),
+                      onPressed: () {},
+                    ),
+                    LocalOutlineButton(
+                      child: Text(
+                        localization.signUp,
+                        style: TextStyle(color: hintColor),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
               ),
-              borderSide: BorderSide(
-                color: underlineColor, //Color of the border
-                style: BorderStyle.solid, //Style of the border
-                width: 0.8, //width of the border
-              ),
-              onPressed: () {},
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            OutlineButton(
-              child: Text(
-                localization.signUp,
-                style: TextStyle(color: hintColor),
-              ),
-              borderSide: BorderSide(
-                color: underlineColor, //Color of the border
-                style: BorderStyle.solid, //Style of the border
-                width: 0.8, //width of the border
-              ),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
-    );
+            );
+          });
+    });
   }
 }

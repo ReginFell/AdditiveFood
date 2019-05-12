@@ -82,13 +82,15 @@ ThemeData createTheme(BuildContext context) {
     primaryColor: Colors.white,
     accentColor: colorAccent,
     textTheme: TextTheme(
-      headline: TextStyle(
-          fontSize: 72.0, fontWeight: FontWeight.bold, color: textColor),
-      title: TextStyle(fontSize: 14.0, color: textColor, fontFamily: 'Raleway'),
-      subtitle:
-          TextStyle(fontSize: 14.0, color: textColor, fontFamily: 'Raleway'),
-      body1: TextStyle(fontSize: 14.0, color: textColor, fontFamily: 'Raleway'),
-    ),
+        headline: TextStyle(
+            fontSize: 72.0, fontWeight: FontWeight.bold, color: textColor),
+        title:
+            TextStyle(fontSize: 14.0, color: textColor, fontFamily: 'Raleway'),
+        subtitle:
+            TextStyle(fontSize: 14.0, color: textColor, fontFamily: 'Raleway'),
+        body1:
+            TextStyle(fontSize: 14.0, color: textColor, fontFamily: 'Raleway'),
+        body2: TextStyle(fontSize: 14.0, color: textColor)),
   );
 }
 

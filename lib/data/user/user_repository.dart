@@ -17,4 +17,16 @@ class UserRepository {
       }
     });
   }
+
+  Future<User> signIn(String email, String password) {
+    return FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((value) {
+      if (value != null) {
+        return User(id: value.uid, name: value.email);
+      } else {
+        return null;
+      }
+    });
+  }
 }
