@@ -59,6 +59,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: underlineColor))),
             ),
+            SizedBox(
+              height: 24,
+            ),
             PasswordField(),
             SizedBox(
               height: 32,

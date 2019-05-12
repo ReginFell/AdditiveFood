@@ -1,6 +1,7 @@
 import 'package:additive_food/core/app_theme_widget.dart';
 import 'package:additive_food/localization/localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class PasswordField extends StatefulWidget {
   const PasswordField({
@@ -33,37 +34,46 @@ class _PasswordFieldState extends State<PasswordField> {
     final localization = AppLocalizations.of(context);
     final hintColor = ThemeContainer.of(context).hintColor;
     final underlineColor = ThemeContainer.of(context).textFieldUnderlineColor;
+    const iconSize = 26.0;
 
-    return TextField(
-        key: widget.fieldKey,
-        obscureText: _obscureText,
-        decoration: InputDecoration(
-            hintText: localization.password,
-            hintStyle: TextStyle(color: hintColor),
-            labelStyle: TextStyle(decorationColor: underlineColor),
-            focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: underlineColor)),
-            enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: underlineColor)),
-            suffixIcon: Container(
-                child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    OutlineButton(
-                        color: Colors.black,
-                        onPressed: () {
-                          setState(() {
-                            _obscureText = !_obscureText;
-                          });
-                        },
-                        borderSide: BorderSide(
-                            color: hintColor, width: _obscureText ? 1.0 : 15.0),
-                        shape: CircleBorder())
-                  ]),
-            ))));
+    return AnimatedContainer(
+      duration: Duration(seconds: 1),
+      child: Stack(
+        children: <Widget>[
+          TextFormField(
+            obscureText: _obscureText,
+            decoration: InputDecoration(
+              contentPadding:
+                  EdgeInsets.only(bottom: 4, top: 8, right: iconSize),
+              hintText: localization.password,
+              hintStyle: TextStyle(color: hintColor),
+              labelStyle: TextStyle(decorationColor: underlineColor),
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: underlineColor)),
+              enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: underlineColor)),
+            ),
+          ),
+          Positioned(
+            bottom: 4,
+            right: 0,
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  _obscureText = !_obscureText;
+                });
+              },
+              child: SvgPicture.asset(
+                _obscureText
+                    ? "assets/icons/eye.svg"
+                    : "assets/icons/eye_open.svg",
+                height: iconSize,
+                color: hintColor,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
