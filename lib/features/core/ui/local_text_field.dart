@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class LocalTextField extends StatefulWidget {
   final Key fieldKey;
   final String hintText;
+  final TextEditingController controller;
 
   const LocalTextField({
     this.fieldKey,
     @required this.hintText,
+    this.controller,
   });
 
   @override
@@ -22,6 +24,7 @@ class _LocalTextFieldState extends State<LocalTextField> {
     final textFieldPadding = ThemeContainer.of(context).textFieldContentPadding;
 
     return TextFormField(
+      controller: widget.controller,
       decoration: InputDecoration(
         contentPadding: textFieldPadding,
         hintText: widget.hintText,

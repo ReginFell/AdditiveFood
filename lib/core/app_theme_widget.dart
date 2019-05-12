@@ -27,7 +27,7 @@ class AppThemeState extends State<ThemeContainer> {
   Color get textHintColor => Color(0xFF6E0091);
   Color get textFieldUnderlineColor => Color(0xFF56FFAB);
 
-  double get passwordSufficsIconSize => 26.0;
+  double get passwordSuffixIconSize => 22.0;
 
   EdgeInsets get textFieldContentPadding => EdgeInsets.only(bottom: 4, top: 8);
 

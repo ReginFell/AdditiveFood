@@ -12,6 +12,7 @@ class LocalPasswordTextField extends StatefulWidget {
   final FormFieldSetter<String> onSaved;
   final FormFieldValidator<String> validator;
   final ValueChanged<String> onFieldSubmitted;
+  final TextEditingController controller;
 
   const LocalPasswordTextField({
     this.fieldKey,
@@ -20,6 +21,7 @@ class LocalPasswordTextField extends StatefulWidget {
     this.onSaved,
     this.validator,
     this.onFieldSubmitted,
+    this.controller,
   });
 
   @override
@@ -36,12 +38,13 @@ class _LocalPasswordTextFieldState extends State<LocalPasswordTextField> {
     final underlineColor = ThemeContainer.of(context).textFieldUnderlineColor;
     final textFieldPadding = ThemeContainer.of(context).textFieldContentPadding;
 
-    final iconSize = ThemeContainer.of(context).passwordSufficsIconSize;
+    final iconSize = ThemeContainer.of(context).passwordSuffixIconSize;
 
     return Container(
       child: Stack(
         children: <Widget>[
           TextFormField(
+            controller: widget.controller,
             obscureText: _obscureText,
             decoration: InputDecoration(
               contentPadding:

@@ -21,6 +21,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final _emailFormController = TextEditingController();
+  final _passwordFormController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return StoreBuilder(
@@ -33,51 +36,54 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 if (state.isLoading) {
                   return Center(child: CircularProgressIndicator());
                 } else if (!state.isLoading && state.user == null) {
-                  return buildLogin(context);
+                  return buildLogin(context, store);
                 }
               });
         });
   }
 
-  Widget buildLogin(BuildContext context) {
+  Widget buildLogin(BuildContext context, Store<AppState> store) {
     final localization = AppLocalizations.of(context);
     final hintColor = ThemeContainer.of(context).textHintColor;
 
-    return StoreBuilder(builder: (BuildContext context, Store<AppState> store) {
-      StoreConnector<AppState, ProfileState>(
-          converter: (store) => store.state.profileState,
-          builder: (context, state) {
-            Center(
-              child: Container(
-                margin: EdgeInsets.all(16),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    LocalTextField(hintText: localization.login),
-                    SizedBox(height: 24),
-                    LocalPasswordTextField(hintText: localization.password),
-                    SizedBox(height: 32),
-                    SizedBox(height: 8),
-                    LocalOutlineButton(
-                      child: Text(
-                        localization.signIn,
-                        style: TextStyle(color: hintColor),
-                      ),
-                      onPressed: () {},
-                    ),
-                    LocalOutlineButton(
-                      child: Text(
-                        localization.signUp,
-                        style: TextStyle(color: hintColor),
-                      ),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
+    return Center(
+      child: Container(
+        margin: EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            LocalTextField(
+              hintText: localization.login,
+              controller: _emailFormController,
+            ),
+            SizedBox(height: 24),
+            LocalPasswordTextField(hintText: localization.password),
+            SizedBox(height: 32),
+            SizedBox(height: 8),
+            LocalOutlineButton(
+              child: Text(
+                localization.signIn,
+                style: TextStyle(color: hintColor),
               ),
-            );
-          });
-    });
+              onPressed: () {
+                store.dispatch(SignInAction(
+                  store,
+                  _emailFormController.text,
+                  _passwordFormController.text,
+                ));
+              },
+            ),
+            LocalOutlineButton(
+              child: Text(
+                localization.signUp,
+                style: TextStyle(color: hintColor),
+              ),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
